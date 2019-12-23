@@ -1,5 +1,7 @@
 > 初始化项目
 ```
+protoc -I. --micro_out=. --go_out=. proto/vessel/vessel.proto
+
 go get -u github.com/micro/protobuf/proto
 go get -u github.com/micro/protobuf/protoc-gen-go
 # 安装微服务工具包

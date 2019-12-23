@@ -2,13 +2,12 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/micro/go-micro/config/cmd"
+	"github.com/micro/go-micro/service/grpc"
 	"io/ioutil"
 	"log"
 	"os"
 
 	pb "consignment-service/proto/consignment"
-	microclient "github.com/micro/go-micro/client"
 	"golang.org/x/net/context"
 )
 
@@ -27,11 +26,18 @@ func parseFile(file string) (*pb.Consignment, error) {
 }
 
 func main() {
+	// 会启动默认的[http]初始化
+	//cmd.Init()
 
-	cmd.Init()
+	server := grpc.NewService()
+	server.Init()
 
 	// Create new greeter client
-	client := pb.NewShippingService("go.micro.srv.consignment", microclient.DefaultClient)
+	// http的注册方式
+	//client := pb.NewShippingService("go.micro.srv.consignment", microclient.DefaultClient)
+	// Create new greeter client
+	// grpc的方式
+	client := pb.NewShippingService("go.micro.srv.consignment", server.Client())
 
 	// Contact the server and print out its response.
 	file := defaultFilename

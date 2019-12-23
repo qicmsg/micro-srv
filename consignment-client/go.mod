@@ -4,6 +4,8 @@ go 1.13
 
 replace consignment-service => ../consignment-service
 
+replace vessel-service => ../vessel-service
+
 require (
 	consignment-service v0.0.0-00010101000000-000000000000
 	github.com/micro/go-micro v1.18.0
